@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :restaurants
+
+  # root page = sign_in page of devise
+  devise_scope :user do
+    root to: "devise/sessions#new"
+  end
 end
