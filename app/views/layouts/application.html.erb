@@ -16,6 +16,8 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <div data-controller="restaurant" data-restaurant-id-value="<%= current_user.id %>">
+      <%= yield %>
+    </div>
   </body>
 </html>
