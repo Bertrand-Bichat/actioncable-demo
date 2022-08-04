@@ -1,10 +1,11 @@
 import { Controller } from "stimulus";
+import { createConsumer } from "@rails/actioncable"
 
 export default class extends Controller {
   static values = { id: Number };
 
   connect() {
-    this.channel = App.cable.subscriptions.create(
+    this.channel = createConsumer().subscriptions.create(
       { channel: "UserChannel", user_id: this.idValue },
       { received: (data) => this.renderPartial(data) }
     );
