@@ -6,7 +6,8 @@ class Restaurant < ApplicationRecord
 
   def broadcast_data
     index_data = RestaurantsController.renderer.render(partial: 'restaurants/index', locals: { restaurants: user.restaurants, user: user })
-    restaurant_data = { restaurant: self, user: user, index_data: index_data }
+    show_data = RestaurantsController.renderer.render(partial: 'restaurants/show', locals: { restaurant: self })
+    restaurant_data = { restaurant: self, user: user, index_data: index_data, show_data: show_data }
     ActionCable.server.broadcast("user_#{user.id}", restaurant_data)
   end
 end
