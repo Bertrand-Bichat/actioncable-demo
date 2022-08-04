@@ -1,6 +1,8 @@
 class Restaurant < ApplicationRecord
+  attr_accessor :skip_callback
+
   belongs_to :user
-  after_commit :broadcast_data
+  after_commit :broadcast_data, unless: -> { skip_callback }
 
   private
 
